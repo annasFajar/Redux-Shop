@@ -1,0 +1,20 @@
+# Terapkan LF sebagai standar untuk semua file teks
+* text=auto eol=lf
+
+# Spesifik untuk jenis file tertentu
+*.sh text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+
+# Jangan ubah format file biner
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.exe binary
+*.dll binary
