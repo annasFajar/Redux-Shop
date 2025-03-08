@@ -3,6 +3,7 @@ import Nav from '../fragments/Nav'
 import {  increment, decrement } from '../redux/cartSlice/CartSlice'
 import ProductsApi from '../API/product.api'
 import { useEffect } from 'react'
+import ModalCart from '../fragments/ModalCart'
 
 const ProductLayout = ({children}) => {
     const count = useSelector((state)=> state.cart.value)
@@ -11,7 +12,9 @@ const ProductLayout = ({children}) => {
 
     return (
         <div className="flex-col justify-center items-center min-h-auto">
-            <Nav/>
+            <Nav>
+                <ModalCart/>
+            </Nav>
             {children}
         </div>
     )

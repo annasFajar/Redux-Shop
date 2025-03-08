@@ -64,7 +64,7 @@ const colorCategory = (kategori) => {
     return changeColor[kategori] || 'error'
 } 
 
-export default function RecipeReviewCard({price,image, title, category, rate, review, id}) {
+export default function RecipeReviewCard({price,image, title, category, rate, review, id, addProduct}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -116,7 +116,7 @@ export default function RecipeReviewCard({price,image, title, category, rate, re
             </Typography>
           </div>
           <div className=' bg-teal-700 rounded-sm'>
-            <IconButton sx={{padding:'6px'}}>
+            <IconButton sx={{padding:'6px'}} onClick={addProduct}>
               <AddShoppingCartIcon sx={{color:'white'}}/>
             </IconButton>
           </div>

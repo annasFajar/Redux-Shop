@@ -17,16 +17,32 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import BadgeShop from '../elements/BadgeShop'
 
+const Searchxs = styled('div') (({theme}) => ({
+    
+    border: '1px solid blue',
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    flexGrow:'initial',
+    margin: '10px'
+}))
+
 const Search = styled('div')(({ theme }) => ({
+  border: '1px solid crimson',
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginRight: theme.spacing(2),
+  // marginRight: theme.spacing(2),
   marginLeft: 0,
   width: '100%',
+  // display:{sm:'none'},
+  
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
@@ -34,6 +50,7 @@ const Search = styled('div')(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
+  border:'1px solid black',
   padding: theme.spacing(0, 2),
   height: '100%',
   position: 'absolute',
@@ -44,6 +61,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  border:'1px solid yellow',
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
@@ -57,7 +75,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({children}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -120,12 +138,10 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <BadgeShop/>
-        </IconButton>
+      {/* <MenuItem>
+        {children}
         <p>Cart</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem>
         <IconButton
           size="large"
@@ -154,77 +170,89 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            MUI
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <BadgeShop/>
-            </IconButton>
+    <>
+      {/* <Box sx={{ flexGrow: 1, top:0}} > */}
+        <AppBar position="sticky" sx={{top: 0}}>
+          <Toolbar>
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              edge="start"
               color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
             >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
+              <MenuIcon />
             </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: {sm: 'block' } }}
             >
-              <AccountCircle />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
+              MUI
+            </Typography>
+            <Search sx={{display:{xs:'none', sm: 'block'}}}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box>
+              {children}
+            </Box>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={17} color="error">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      {/* </Box> */}
+      <Searchxs sx={{display:{xs:'block', sm:'none'}}}>
+        <SearchIconWrapper>
+          <SearchIcon />
+        </SearchIconWrapper>
+        <StyledInputBase
+          placeholder="Search…"
+          inputProps={{ 'aria-label': 'search' }}
+        />
+      </Searchxs>
+    </>
   );
 }
