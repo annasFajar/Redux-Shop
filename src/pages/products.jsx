@@ -5,11 +5,15 @@ import CardProduct from '../fragments/CardProduct'
 import { Grid2 } from "@mui/material"
 import { gridClasses } from "@mui/material/Grid"
 import ModalCart from '../fragments/ModalCart'
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { addProduct } from "../redux/cartSlice/CartSlice"
 
 
 
 const Products = () => {
     const [products, setProducts] = useState([])
+    const dispatch = useDispatch()
     
     useEffect(()=>{
         ProductsApi((res)=>setProducts(res))
@@ -24,7 +28,7 @@ const Products = () => {
                     {products.map((product)=> {
                         return (
                                 <div className="flex" key={product.id}>
-                                    <CardProduct  category={product.category} price={product.price} id={product.id} rate={product.rating.rate} review={product.rating.count} image={product.image} title={`${product.title.length < 30 ? product.title : product.title?.substring(0,30) + '...'} `} />
+                                    <CardProduct addProduct={()=>{dispatch(addProduct(product))}} category={product.category} price={product.price} id={product.id} rate={product.rating.rate} review={product.rating.count} image={product.image} title={`${product.title.length < 30 ? product.title : product.title?.substring(0,30) + '...'} `} />
                                 </div>
                                 )
                             })}
