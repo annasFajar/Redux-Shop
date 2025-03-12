@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import BadgeShop from '../elements/BadgeShop'
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 const Searchxs = styled('div') (({theme}) => ({
     
@@ -31,7 +32,6 @@ const Searchxs = styled('div') (({theme}) => ({
 }))
 
 const Search = styled('div')(({ theme }) => ({
-  border: '1px solid crimson',
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -50,7 +50,6 @@ const Search = styled('div')(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-  border:'1px solid black',
   padding: theme.spacing(0, 2),
   height: '100%',
   position: 'absolute',
@@ -61,7 +60,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  border:'1px solid yellow',
+  width: '100%',
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
@@ -187,9 +186,10 @@ export default function PrimarySearchAppBar({children}) {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: {sm: 'block' } }}
+              sx={{ display: {sm: 'block',  display:'flex', alignItems:'center', gap: '8px' } }}
             >
-              MUI
+              <ShoppingBagIcon/>
+              As_Shop
             </Typography>
             <Search sx={{display:{xs:'none', sm: 'block'}}}>
               <SearchIconWrapper>

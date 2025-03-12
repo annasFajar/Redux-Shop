@@ -1,7 +1,7 @@
 import Badge from '@mui/material/Badge';
-import * as React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 // import ButtonGroup from '@mui/material/ButtonGroup';
 // import Button from '@mui/material/Button';
 // import AddIcon from '@mui/icons-material/Add';
@@ -10,11 +10,19 @@ import { useSelector } from 'react-redux';
 
 export default function BadgeVisibility() {
   // const [count, setCount] = React.useState(1);
-  const count = useSelector((state)=>state.cart.value)
+  const cart = useSelector((state)=>state.cart.cart)
+  const count = useSelector((state)=> state.cart.value)
+  const [totalQty, setTotalQty] = useState(count)
+  
+  // const totalQuantity = count.re
+  useEffect(()=> {
+  const hasil =  cart.reduce((totalQty, product)=> totalQty + product.qty,0)
+  setTotalQty(hasil)
+}, [cart])
 
   return (
     <>
-        <Badge color="error" badgeContent={count}>
+        <Badge color="error" badgeContent={totalQty}>
           <ShoppingCartIcon/>
         </Badge>
         {/* <ButtonGroup>
