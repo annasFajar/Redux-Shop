@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: "/Redux-Shop/",
+  base: process.env.VITE_BASE_PATH || "/Redux-Shop",
   server: {
     host:"0.0.0.0",
     port: 3000,
