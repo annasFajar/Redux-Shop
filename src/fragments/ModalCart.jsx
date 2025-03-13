@@ -30,7 +30,6 @@ export default function TransitionsModal() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    console.log(open)
     return setOpen(false)
   };
   const [total,setTotal] = useState(0)

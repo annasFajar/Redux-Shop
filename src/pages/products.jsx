@@ -22,9 +22,9 @@ const Products = () => {
 
     return(
         <ProductLayout>
-            <div className="mx-4 my-10 sm:mx-12 sm:my-15 md:mx-13 md:my-5 lg:mx-19 lg:my-10" >
+            <div className=" m-4 mx-4 sm:mx-12 md:mx-13 lg:mx-19" >
                 {/* <ModalCart/> */}
-                <div className=" grid scale-90 gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                <div className="  grid scale-90 origin-top gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {products.map((product)=> {
                         return (
                                 <div className="flex" key={product.id}>
