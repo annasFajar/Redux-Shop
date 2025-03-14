@@ -17,6 +17,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import BadgeShop from '../elements/BadgeShop'
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import ButtonSort from '../elements/ButtonSort';
 
 const Searchxs = styled('div') (({theme}) => ({
     
@@ -244,15 +245,19 @@ export default function PrimarySearchAppBar({children}) {
         {renderMobileMenu}
         {renderMenu}
       {/* </Box> */}
-      <Searchxs sx={{display:{xs:'block', sm:'none'}}}>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ 'aria-label': 'search' }}
-        />
-      </Searchxs>
+      <div className='flex  justify-between items-center'>
+
+        <Searchxs sx={{display:{xs:'block', sm:'none', },marginX:'9px', width: '80%'}}>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </Searchxs >
+        <ButtonSort ft={'10px'} pad={'2px 5px'} small={'none'} />
+      </div>
     </>
   );
 }
